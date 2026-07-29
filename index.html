@@ -1,33 +1,560 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mini Black Hole</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miguel Cardenas · CV</title>
   <style>
-    body{margin:0;display:grid;place-items:center;height:100vh;background:#05070d;overflow:hidden}
-    .hole{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#000 38%,#1f2430 55%,#ff9a3d 68%,#ffd27a 76%,transparent 78%);box-shadow:0 0 60px #ff9a3d55;position:relative}
-    .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.75}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .cv {
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08), 0 8px 24px -8px rgba(0,0,0,0.04);
+      padding: 2.8rem 3rem;
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 640px) {
+      .cv {
+        padding: 1.8rem 1.2rem;
+      }
+    }
+
+    /* header */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #eef2f6;
+      padding-bottom: 1.6rem;
+    }
+
+    .name-title h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0b1e33;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.8rem;
+      font-size: 0.95rem;
+      color: #475569;
+      margin-top: 0.5rem;
+    }
+
+    .contact-row a {
+      color: #1e293b;
+      text-decoration: none;
+      border-bottom: 1px dotted transparent;
+      transition: border-color 0.15s;
+    }
+
+    .contact-row a:hover {
+      border-bottom-color: #94a3b8;
+    }
+
+    .contact-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .badge-lang {
+      background: #f1f5f9;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1e293b;
+      display: inline-block;
+    }
+
+    /* section */
+    .section {
+      margin-top: 2rem;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #eef2f6;
+      padding-bottom: 0.5rem;
+    }
+
+    /* research interests (inline) */
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin: 0.2rem 0 0.2rem 0;
+    }
+
+    .interests-list span {
+      background: #f1f5f9;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #1e293b;
+    }
+
+    /* education / experience items */
+    .entry {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .entry-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem 1rem;
+    }
+
+    .entry-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #0f1e2f;
+    }
+
+    .entry-org {
+      font-weight: 500;
+      color: #2c3e4f;
+    }
+
+    .entry-date {
+      font-size: 0.85rem;
+      color: #64748b;
+      white-space: nowrap;
+      background: #f8fafc;
+      padding: 0.1rem 0.7rem;
+      border-radius: 30px;
+    }
+
+    .entry-sub {
+      font-size: 0.92rem;
+      color: #2c3e50;
+      font-weight: 450;
+      margin-top: 0.1rem;
+    }
+
+    .entry-desc {
+      font-size: 0.92rem;
+      color: #334155;
+      margin-top: 0.3rem;
+      padding-left: 0.2rem;
+      list-style: none;
+    }
+
+    .entry-desc li {
+      margin-bottom: 0.3rem;
+      position: relative;
+      padding-left: 1.3rem;
+    }
+
+    .entry-desc li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+    }
+
+    .entry-desc p {
+      margin-bottom: 0.25rem;
+    }
+
+    .compact-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      color: #1e293b;
+      margin-top: 0.3rem;
+    }
+
+    .skill-tag {
+      background: #f1f5f9;
+      padding: 0.15rem 0.7rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #1e293b;
+    }
+
+    .project-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .project-item {
+      flex: 1 0 180px;
+    }
+
+    .project-item strong {
+      font-weight: 600;
+      color: #0b1e33;
+    }
+
+    .project-item .proj-date {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-left: 0.4rem;
+      font-weight: 400;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #eef2f6;
+      margin: 1.6rem 0 0.8rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 1.2rem;
+      text-align: right;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1rem;
+    }
+
+    .inline-badge {
+      background: #eef2f6;
+      border-radius: 40px;
+      padding: 0.1rem 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #334155;
+      margin-left: 0.3rem;
+    }
+
+    a {
+      color: #1e293b;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+
+    .list-dash {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+    .list-dash li {
+      margin-bottom: 0.3rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .list-dash li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+    }
   </style>
 </head>
 <body>
-  <div class="hole" id="hole" aria-label="animated mini black hole"></div>
-  <script>
-    const hole = document.getElementById('hole');
-    for (let i = 0; i < 40; i++) {
-      const s = document.createElement('span');
-      s.className = 'star';
-      const a = Math.random() * Math.PI * 2;
-      const r = 40 + Math.random() * 120;
-      s.style.left = 110 + Math.cos(a) * r + 'px';
-      s.style.top = 110 + Math.sin(a) * r + 'px';
-      hole.appendChild(s);
-    }
-    let t = 0;
-    setInterval(() => {
-      t += 0.03;
-      hole.style.transform = `rotate(${t}rad) scale(${1 + Math.sin(t * 2) * 0.02})`;
-    }, 16);
-  </script>
+<div class="cv">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="name-title">
+      <h1>Miguel Cardenas</h1>
+    </div>
+    <div class="contact-row">
+      <span>📧 miguelecsx@gmail.com</span>
+      <span>📞 +57 3229155935</span>
+      <a href="#">linkedin.com/in/miguelcsx</a>
+      <a href="#">github.com/miguelcsx</a>
+      <a href="#">miguelcsx.vercel.app</a>
+      <span class="badge-lang">🇨🇴 Spanish (Native)</span>
+      <span class="badge-lang">🇬🇧 English (Professional)</span>
+    </div>
+  </div>
+
+  <!-- RESEARCH INTERESTS -->
+  <div class="section">
+    <div class="section-title">Research Interests</div>
+    <div class="interests-list">
+      <span>AI systems engineering</span>
+      <span>compiler & runtime technologies</span>
+      <span>AI alignment & safety</span>
+      <span>multi-agent systems</span>
+      <span>computational modeling</span>
+      <span>human-centered AI design</span>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">ETH Zurich</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <div class="entry-sub">Student Summer Research Fellowship — Cognitive Architecture for Intelligent Urban Planning</div>
+      <ul class="entry-desc">
+        <li>Built a multi-agent cognitive system integrating graph-based knowledge with simulation backends for urban mobility; presented at AI+X Summit (Zurich, 2025).</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">University of Medellin</span>
+        <span class="entry-date">B.Sc. in Scientific Computing</span>
+      </div>
+      <div class="entry-sub">Member, Science of Earth and Space research group. Relevant coursework: ML, compilers, DSA, numerical methods, HPC.</div>
+      <ul class="entry-desc">
+        <li><strong>Undergraduate Researcher</strong> (University of Medellin / RedColsi) Jan - May 2025 — Barnes-Hut N-body simulation research focused on scalability; presented at RedColsi 2025.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RESEARCH & PROFESSIONAL EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Research & Professional Experience</div>
+    <div style="font-size:0.85rem; color:#64748b; margin-bottom:1rem;">Selected roles in reverse-chronological order; concurrent roles explicitly labeled.</div>
+
+    <!-- LFX -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">LFX Mentorship (RISC-V)</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <div class="entry-sub">Mentee Researcher - AI-Assisted Extraction of Architectural Parameters</div>
+      <ul class="entry-desc">
+        <li>Developed prompt and context-size strategies for LLMs to extract architectural parameters from RISC-V privileged and unprivileged specifications. Used manually curated UDB examples and specification excerpts to classify parameters as configuration-dependent, named, or unnamed.</li>
+      </ul>
+    </div>
+
+    <!-- UrbanEcho -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">UrbanEcho</span>
+        <span class="entry-date">Founding Engineer (Fixed Contract)</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Built core platform systems and AI reasoning agents integrated into urban and mobility simulation pipelines.</li>
+      </ul>
+      <div style="margin-top:0.4rem;" class="entry-sub">Research Assistant - Cognitive AI for Urban Planning <span class="inline-badge">Concurrent</span> (Jun - Oct 2025)</div>
+      <ul class="entry-desc">
+        <li>Implemented a cognitive multi-agent layer on urban digital twins for mobility/infrastructure scenario reasoning.</li>
+        <li>Integrated graph-based knowledge with simulation backends for "what-if" urban planning analysis.</li>
+        <li>Co-authored a research publication.</li>
+      </ul>
+    </div>
+
+    <!-- TripleTen -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">TripleTen</span>
+        <span class="entry-date">Data Science Instructor (Part-time)</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Led cohorts through data science and ML curriculum.</li>
+        <li>Mentored students in project structure, evaluation, and reproducibility.</li>
+      </ul>
+    </div>
+
+    <!-- ForensicT -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">ForensicT</span>
+        <span class="entry-date">Security Engineer / Red Team (Freelance)</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Conducted red-team style assessments and offensive security testing for client applications and APIs.</li>
+      </ul>
+    </div>
+
+    <!-- GSoC LLVM -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Google Summer of Code - LLVM Foundation</span>
+        <span class="entry-date">May - Sep 2025</span>
+      </div>
+      <div class="entry-sub">LLVM Advisor: Compiler Offloading Visualization Tool</div>
+      <ul class="entry-desc">
+        <li>Built a visualization and analysis tool for LLVM compiler remarks + profiling data for GPU offloading workloads. Implemented compiler wrapper, JSON storage, and web UI for cross-compilation-unit analysis. Presented at LLVM Developers Conference 2025.</li>
+      </ul>
+    </div>
+
+    <!-- Univ Medellin Software -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">University of Medellin</span>
+        <span class="entry-date">Software Engineer</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Integrated LLMs to enable AI-powered querying of university data.</li>
+      </ul>
+    </div>
+
+    <!-- Fluid Attacks -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Fluid Attacks</span>
+        <span class="entry-date">Security Engineer</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Built automated security scanners (DAST/SAST) on AWS and developed AST parsing tools for vulnerability detection.</li>
+      </ul>
+    </div>
+
+    <!-- Autonomic Mind -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Autonomic Mind</span>
+        <span class="entry-date">—</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Set up GitLab pipelines with Nix to support reproducible CI/CD and security-focused development workflows.</li>
+      </ul>
+    </div>
+
+    <!-- Eastern Lubrication -->
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Eastern Lubrication Systems</span>
+        <span class="entry-date">Freelance Web Developer</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Built the company website and delivered core web features aligned with business requirements.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OPEN SOURCE, SERVICE & COMMUNITY -->
+  <div class="section">
+    <div class="section-title">Open Source, Service & Community</div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">LLVM Colombia</span>
+        <span class="entry-date">Co-founder & Staff Member</span>
+      </div>
+      <ul class="entry-desc">
+        <li>Building compiler education community in Latin America. Organizing study groups, workshops, and connecting students with LLVM contributors.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Boston University</span>
+        <span class="entry-date">Mar - Jun 2025</span>
+      </div>
+      <div class="entry-sub">Volunteer Research Support - CUDA Bug Detection Tool Testing</div>
+      <ul class="entry-desc">
+        <li>Tested and documented a CUDA kernel bug-detection tool; reproduced failure cases and analyzed kernel behavior.</li>
+      </ul>
+    </div>
+    <div><strong>Open Source Contributions:</strong> LLVM Project: fixed a Clang driver issue for NVIDIA GPU support. Contributions to scikit-learn, pandas, Mozilla, Zed editor, and others.</div>
+  </div>
+
+  <!-- CONFERENCE PARTICIPATION -->
+  <div class="section">
+    <div class="section-title">Conference Participation</div>
+    <ul class="list-dash" style="margin-top:0.2rem;">
+      <li>CGO 2026 - Presenting "Compiling Agentic AI Programs for Dataflow Execution" <a href="#">[Link]</a></li>
+      <li>LLVM Developers Conference 2025 - Presented GSoC project <a href="#">[Link]</a></li>
+      <li>CGO Artifact Evaluation Committee (2024 - Present)</li>
+    </ul>
+  </div>
+
+  <!-- RELEVANT PROJECTS -->
+  <div class="section">
+    <div class="section-title">Relevant Projects</div>
+    <div class="project-grid">
+      <div class="project-item"><strong>APXM</strong> <span class="proj-date">Ongoing</span><br>Compiled graph for AI Agents Skill Optimization.</div>
+      <div class="project-item"><strong>Onyx Compiler</strong> <span class="proj-date">Ongoing</span><br>Personal compiler project exploring language design, optimization, and compiler security.</div>
+      <div class="project-item"><strong>Aura AI Bot</strong> <span class="proj-date">2023</span><br>LLM-powered Discord bot for student support in university learning communities.</div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div style="display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem;">
+      <div><span class="skill-tag">Python</span> <span class="skill-tag">C++</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">Rust</span></div>
+      <div><span class="skill-tag">AI/ML:</span> PyTorch, scikit-learn, RL (basic)</div>
+      <div><span class="skill-tag">Systems:</span> LLVM/MLIR, profiling, GPU programming</div>
+      <div><span class="skill-tag">Data:</span> pandas, NumPy, NetworkX/Neo4j, matplotlib/seaborn/D3</div>
+      <div><span class="skill-tag">Web:</span> React, Node.js</div>
+      <div><span class="skill-tag">Tools:</span> Git, Nix, Docker, GCP, Linux, CMake, CI/CD</div>
+    </div>
+  </div>
+
+  <!-- AWARDS & CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Awards & Certifications</div>
+    <div class="two-col">
+      <div>
+        <strong>Awards</strong>
+        <ul class="list-dash" style="margin-top:0.2rem;">
+          <li>ETH Zurich Summer Research Fellowship (2025)</li>
+          <li>Google Summer of Code (2025)</li>
+          <li>ACM Professional Membership Award (2025)</li>
+          <li>2nd Place—AI Image Generation Challenge, Univ. of Medellín (2025)</li>
+          <li>1st Place—National AWS AI DeepRacer (2023)</li>
+          <li>AWS & Udacity AI Scholarship</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Certifications</strong>
+        <ul class="list-dash" style="margin-top:0.2rem;">
+          <li>AI Programming with Python (Udacity)</li>
+          <li>Google Data Analytics</li>
+          <li>Web Application Penetration Tester eXtreme (INE)</li>
+          <li>Quantum Computing (The Coding School)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">miguelcardenas · cv 2025</div>
+</div>
 </body>
 </html>

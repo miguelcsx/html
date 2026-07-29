@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mini Black Hole</title>
+  <style>
+    body{margin:0;display:grid;place-items:center;height:100vh;background:#05070d;overflow:hidden}
+    .hole{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#000 38%,#1f2430 55%,#ff9a3d 68%,#ffd27a 76%,transparent 78%);box-shadow:0 0 60px #ff9a3d55;position:relative}
+    .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.75}
+  </style>
+</head>
+<body>
+  <div class="hole" id="hole" aria-label="animated mini black hole"></div>
+  <script>
+    const hole = document.getElementById('hole');
+    for (let i = 0; i < 40; i++) {
+      const s = document.createElement('span');
+      s.className = 'star';
+      const a = Math.random() * Math.PI * 2;
+      const r = 40 + Math.random() * 120;
+      s.style.left = 110 + Math.cos(a) * r + 'px';
+      s.style.top = 110 + Math.sin(a) * r + 'px';
+      hole.appendChild(s);
+    }
+    let t = 0;
+    setInterval(() => {
+      t += 0.03;
+      hole.style.transform = `rotate(${t}rad) scale(${1 + Math.sin(t * 2) * 0.02})`;
+    }, 16);
+  </script>
+</body>
+</html>
