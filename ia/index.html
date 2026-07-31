@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miguel Cardenas · Software Engineer CV</title>
+  
+  <!-- Google Fonts for a professional, modern look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       1. CSS VARIABLES (Easy Theming)
+       Change these values to update the whole CV's colors!
+       ========================================= */
+    :root {
+      --primary-color: #0f172a;       /* Dark slate for headings */
+      --accent-color: #2563eb;        /* Blue for links/accents */
+      --text-color: #334155;          /* Soft dark gray for body text */
+      --light-bg: #f8fafc;            /* Very light gray for backgrounds/tags */
+      --border-color: #e2e8f0;        /* Subtle borders */
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* =========================================
+       2. GLOBAL RESET & BASE STYLES
+       ========================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      font-family: var(--font-main);
+      color: var(--text-color);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* Main CV Container */
+    .cv-container {
+      background: white;
+      width: 100%;
+      max-width: 850px; /* Optimal reading width */
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* =========================================
+       3. HEADER & PROFILE PICTURE
+       ========================================= */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; /* Makes it a perfect circle */
+      object-fit: cover;  /* Ensures the image doesn't stretch */
+      border: 3px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex-shrink: 0; /* Prevents image from shrinking on small screens */
+    }
+
+    .header-info h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .header-info .title {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-grid a, .contact-grid span {
+      color: var(--text-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .contact-grid a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+
+    /* =========================================
+       4. PROFILE / SUMMARY SECTION
+       ========================================= */
+    .profile-section {
+      margin-bottom: 2rem;
+    }
+
+    .profile-text {
+      font-size: 1rem;
+      color: var(--text-color);
+      text-align: justify;
+    }
+
+    /* =========================================
+       5. SECTIONS (Education, Experience, etc.)
+       ========================================= */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .entry {
+      margin-bottom: 1.5rem;
+    }
+
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .entry-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .entry-org {
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .entry-date {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #64748b;
+      background: var(--light-bg);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .entry-desc {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .entry-desc li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    /* Custom dash bullet points */
+    .entry-desc li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    /* =========================================
+       6. SKILLS & TAGS
+       ========================================= */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: var(--light-bg);
+      color: var(--primary-color);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+    }
+
+    /* =========================================
+       7. PRINT STYLES (Crucial for PDF export!)
+       ========================================= */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .cv-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 0;
+        border-radius: 0;
+      }
+      .entry-date {
+        background: none;
+        padding: 0;
+        border: none;
+      }
+      .skill-tag {
+        border: 1px solid #ccc;
+      }
+      /* Ensure links show their URL in print */
+      a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+      }
+      /* Prevent awkward page breaks inside an entry */
+      .entry {
+        page-break-inside: avoid;
+      }
+    }
+
+    /* =========================================
+       8. MOBILE RESPONSIVENESS
+       ========================================= */
+    @media (max-width: 600px) {
+      .cv-container {
+        padding: 1.5rem;
+      }
+      .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      .contact-grid {
+        justify-content: center;
+      }
+      .entry-header {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cv-container">
+    
+    <!-- HEADER: Profile Picture & Contact Info -->
+    <header class="header">
+      <!-- REPLACE THE SRC BELOW WITH YOUR ACTUAL PHOTO URL OR LOCAL FILE PATH (e.g., "profile.jpg") -->
+      <img src="https://ui-avatars.com/api/?name=Miguel+Cardenas&background=2563eb&color=fff&size=256" 
+           alt="Miguel Cardenas Profile Picture" 
+           class="profile-pic">
+      
+      <div class="header-info">
+        <h1>Miguel Cardenas</h1>
+        <div class="title">Software Engineering Student & AI/Systems Researcher</div>
+        <div class="contact-grid">
+          <span>📧 miguelecsx@gmail.com</span>
+          <span>📞 +57 3229155935</span>
+          <a href="https://linkedin.com/in/miguelcsx" target="_blank">💼 LinkedIn</a>
+          <a href="https://github.com/miguelcsx" target="_blank">💻 GitHub</a>
+          <a href="https://miguelcsx.vercel.app" target="_blank">🌐 Portfolio</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROFILE SUMMARY -->
+    <section class="profile-section">
+      <h2 class="section-title">Professional Profile</h2>
+      <p class="profile-text">
+        Motivated Software Engineering student with a strong foundation in AI systems, compiler technologies, and full-stack development. Proven experience building scalable simulations, contributing to major open-source projects (LLVM, scikit-learn), and leading technical initiatives. Passionate about human-centered AI design, multi-agent systems, and bridging the gap between complex low-level systems and practical, real-world applications.
+      </p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">ETH Zurich</div>
+            <div class="entry-org">Student Summer Research Fellowship</div>
+          </div>
+          <span class="entry-date">2025</span>
+        </div>
+        <ul class="entry-desc">
+          <li>Focus: Cognitive Architecture for Intelligent Urban Planning.</li>
+          <li>Built a multi-agent cognitive system integrating graph-based knowledge with simulation backends for urban mobility.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">University of Medellin</div>
+            <div class="entry-org">B.Sc. in Scientific Computing</div>
+          </div>
+          <span class="entry-date">Expected 2026</span>
+        </div>
+        <ul class="entry-desc">
+          <li><strong>Relevant Coursework:</strong> Machine Learning, Compilers, Data Structures & Algorithms, Numerical Methods, HPC.</li>
+          <li><strong>Undergraduate Researcher:</strong> Barnes-Hut N-body simulation research focused on scalability (RedColsi 2025).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section">
+      <h2 class="section-title">Research & Professional Experience</h2>
+      
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">LFX Mentorship (RISC-V)</div>
+            <div class="entry-org">Mentee Researcher</div>
+          </div>
+          <span class="entry-date">2025</span>
+        </div>
+        <ul class="entry-desc">
+          <li>Developed prompt and context-size strategies for LLMs to extract architectural parameters from RISC-V specifications.</li>
+          <li>Classified parameters using manually curated UDB examples and specification excerpts.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">Google Summer of Code - LLVM Foundation</div>
+            <div class="entry-org">Compiler Offloading Visualization Tool</div>
+          </div>
+          <span class="entry-date">May – Sep 2025</span>
+        </div>
+        <ul class="entry-desc">
+          <li>Built a visualization and analysis tool for LLVM compiler remarks and profiling data for GPU offloading workloads.</li>
+          <li>Implemented compiler wrapper, JSON storage, and a web UI for cross-compilation-unit analysis.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">UrbanEcho</div>
+            <div class="entry-org">Founding Engineer & Research Assistant</div>
+          </div>
+          <span class="entry-date">2024 – Present</span>
+        </div>
+        <ul class="entry-desc">
+          <li>Built core platform systems and AI reasoning agents integrated into urban and mobility simulation pipelines.</li>
+          <li>Implemented a cognitive multi-agent layer on urban digital twins for "what-if" infrastructure scenario reasoning.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C / C++</span>
+        <span class="skill-tag">Rust</span>
+        <span class="skill-tag">JavaScript / TypeScript</span>
+        <span class="skill-tag">LLVM / MLIR</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">React / Node.js</span>
+        <span class="skill-tag">Git / Nix / Docker</span>
+        <span class="skill-tag">AWS / GCP</span>
+        <span class="skill-tag">CUDA / GPU Programming</span>
+      </div>
+    </section>
+
+    <!-- OPEN SOURCE & COMMUNITY -->
+    <section class="section">
+      <h2 class="section-title">Open Source & Community</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">LLVM Colombia</div>
+          <span class="entry-date">Co-founder & Staff</span>
+        </div>
+        <ul class="entry-desc">
+          <li>Building a compiler education community in Latin America, organizing study groups and connecting students with LLVM contributors.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">Open Source Contributions</div>
+        </div>
+        <ul class="entry-desc">
+          <li><strong>LLVM Project:</strong> Fixed a Clang driver issue for NVIDIA GPU support.</li>
+          <li><strong>Other:</strong> Contributions to scikit-learn, pandas, Mozilla, and Zed editor.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="section">
+      <h2 class="section-title">Awards & Certifications</h2>
+      <ul class="entry-desc">
+        <li><strong>Google Summer of Code</strong> (2025) & <strong>ETH Zurich Summer Research Fellowship</strong> (2025)</li>
+        <li><strong>ACM Professional Membership Award</strong> (2025)</li>
+        <li><strong>1st Place:</strong> National AWS AI DeepRacer (2023)</li>
+        <li><strong>Certifications:</strong> AI Programming with Python (Udacity), Web Application Penetration Tester (INE)</li>
+      </ul>
+    </section>
+
+  </div>
+
+</body>
+</html>
