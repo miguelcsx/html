@@ -6,7 +6,8 @@
   "author": "",
   "type": "module",
   "scripts": {
-    "week1": "tsx week1/pset1.ts"
+    "week1": "tsx week1/pset1.ts",
+    "week2": "tsx week2/app.ts"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",
