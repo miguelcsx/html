@@ -1,0 +1,16 @@
+{
+  "name": "typescript-learn",
+  "version": "1.0.0",
+  "description": "TypeScript exercises",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "week1": "tsx week1/pset1.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
