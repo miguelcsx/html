@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejercicio 2 - Lista dinamica</title>
+<style>
+body { font-family: Georgia, serif; background: #eee; margin: 2rem; }
+li { margin: .25rem 0; }
+</style>
+</head>
+<body>
+<p><a href="index.html">&larr; volver</a></p>
+<h1>Lista dinamica</h1>
+<input id="texto" placeholder="Nuevo item">
+<button onclick="agregar()">Agregar</button>
+<ul id="lista"></ul>
+<script>
+const items = [];
+
+function agregar() {
+  const input = document.getElementById('texto');
+  if (!input.value) return;
+  items.push(input.value);
+  input.value = '';
+  render();
+}
+
+function render() {
+  document.getElementById('lista').innerHTML = items.map(i => `<li>${i}</li>`).join('');
+}
+</script>
+</body>
+</html>
