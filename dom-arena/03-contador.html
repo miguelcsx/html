@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejercicio 3 - Contador con limite</title>
+<style>
+body { font-family: Georgia, serif; background: #eee; text-align: center; margin-top: 4rem; }
+button { font-size: 1.5rem; width: 3rem; }
+#valor { font-size: 2rem; display: inline-block; width: 3rem; }
+</style>
+</head>
+<body>
+<p><a href="index.html">&larr; volver</a></p>
+<h1>Contador con limite</h1>
+<button onclick="cambiar(-1)">-</button>
+<span id="valor">0</span>
+<button onclick="cambiar(1)">+</button>
+<script>
+let contador = 0;
+
+function cambiar(delta) {
+  contador += delta;
+  document.getElementById('valor').textContent = contador;
+  if (contador >= 10) alert('Llegaste a 10');
+}
+</script>
+</body>
+</html>
