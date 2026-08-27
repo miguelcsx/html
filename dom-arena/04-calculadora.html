@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejercicio 4 - Calculadora</title>
+<style>
+body { font-family: Georgia, serif; background: #eee; text-align: center; margin-top: 3rem; }
+input { width: 4rem; font-size: 1.2rem; }
+#resultado { font-size: 1.5rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+<p><a href="index.html">&larr; volver</a></p>
+<h1>Calculadora</h1>
+<input id="a" type="number">
+<select id="op">
+<option value="+">+</option>
+<option value="-">-</option>
+<option value="*">*</option>
+<option value="/">/</option>
+</select>
+<input id="b" type="number">
+<button onclick="calcular()">=</button>
+<div id="resultado"></div>
+<script>
+function calcular() {
+  const a = Number(document.getElementById('a').value);
+  const b = Number(document.getElementById('b').value);
+  const op = document.getElementById('op').value;
+  let resultado;
+  switch (op) {
+    case '+': resultado = a + b; break;
+    case '-': resultado = a - b; break;
+    case '*': resultado = a * b; break;
+    case '/': resultado = a / b; break;
+  }
+  document.getElementById('resultado').textContent = resultado;
+}
+</script>
+</body>
+</html>
