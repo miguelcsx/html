@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ejercicio 1 - Cambiar color</title>
-<style>
-body { font-family: Georgia, serif; background: #eee; text-align: center; margin-top: 4rem; }
-button { font-size: 1.2rem; padding: .5rem 1rem; }
-</style>
+<link rel="stylesheet" href="arena.css">
 </head>
 <body>
-<p><a href="index.html">&larr; volver</a></p>
+<div class="card">
+<a class="back" href="index.html">&larr; volver</a>
 <h1>Cambiar color</h1>
 <button onclick="document.body.style.background = '#' + Math.floor(Math.random() * 16777215).toString(16)">Click</button>
+</div>
 </body>
 </html>

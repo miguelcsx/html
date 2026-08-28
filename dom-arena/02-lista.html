@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ejercicio 2 - Lista dinamica</title>
-<style>
-body { font-family: Georgia, serif; background: #eee; margin: 2rem; }
-li { margin: .25rem 0; }
-</style>
+<link rel="stylesheet" href="arena.css">
 </head>
 <body>
-<p><a href="index.html">&larr; volver</a></p>
+<div class="card list">
+<a class="back" href="index.html">&larr; volver</a>
 <h1>Lista dinamica</h1>
-<input id="texto" placeholder="Nuevo item">
+<div class="row">
+<input id="texto" type="text" placeholder="Nuevo item">
 <button onclick="agregar()">Agregar</button>
+</div>
 <ul id="lista"></ul>
 <script>
 const items = [];
@@ -30,5 +30,6 @@ function render() {
   document.getElementById('lista').innerHTML = items.map(i => `<li>${i}</li>`).join('');
 }
 </script>
+</div>
 </body>
 </html>

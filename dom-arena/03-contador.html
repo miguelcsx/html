@@ -4,14 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ejercicio 3 - Contador con limite</title>
-<style>
-body { font-family: Georgia, serif; background: #eee; text-align: center; margin-top: 4rem; }
-button { font-size: 1.5rem; width: 3rem; }
-#valor { font-size: 2rem; display: inline-block; width: 3rem; }
-</style>
+<link rel="stylesheet" href="arena.css">
 </head>
 <body>
-<p><a href="index.html">&larr; volver</a></p>
+<div class="card">
+<a class="back" href="index.html">&larr; volver</a>
 <h1>Contador con limite</h1>
 <button onclick="cambiar(-1)">-</button>
 <span id="valor">0</span>
@@ -25,5 +22,6 @@ function cambiar(delta) {
   if (contador >= 10) alert('Llegaste a 10');
 }
 </script>
+</div>
 </body>
 </html>
