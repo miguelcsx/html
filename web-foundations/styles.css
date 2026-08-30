@@ -1,0 +1,28 @@
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: #f0f0f0;
+  color: #111;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+header {
+  border-bottom: 2px solid #111;
+  padding: 1rem 0;
+}
+
+nav a {
+  margin-right: 1rem;
+  color: #00008b;
+}
+
+section {
+  border-bottom: 1px solid #999;
+  padding: 1.5rem 0;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  color: #555;
+}
