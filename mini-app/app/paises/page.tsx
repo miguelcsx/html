@@ -10,6 +10,7 @@ type Country = {
 
 export default function Paises() {
   const [countries, setCountries] = useState<Country[]>([]);
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,11 +22,21 @@ export default function Paises() {
 
   if (loading) return <p>Cargando...</p>;
 
+  const filtered = countries.filter((c) =>
+    c.name.common.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <section>
       <h1 className="text-2xl font-bold mb-4">Paises</h1>
+      <input
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Buscar pais"
+        className="border border-gray-300 p-2 mb-4 w-full"
+      />
       <ul>
-        {countries.map((c) => (
+        {filtered.map((c) => (
           <li key={c.name.common}>{c.name.common}</li>
         ))}
       </ul>
