@@ -35,9 +35,13 @@ export default function Paises() {
         placeholder="Buscar pais"
         className="border border-gray-300 p-2 mb-4 w-full"
       />
-      <ul>
+      <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {filtered.map((c) => (
-          <li key={c.name.common}>{c.name.common}</li>
+          <li key={c.name.common} className="border border-gray-300 p-2 text-center">
+            <img src={c.flags.png} alt={c.name.common} className="mx-auto mb-1" />
+            <p className="font-bold">{c.name.common}</p>
+            <p className="text-sm">{c.capital?.[0]}</p>
+          </li>
         ))}
       </ul>
     </section>
