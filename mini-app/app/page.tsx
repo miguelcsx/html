@@ -5,7 +5,6 @@ export default function Home() {
       <p className="mt-2 text-slate-600">
         Proyecto que consume la API de usuarios usando useState y useEffect.
       </p>
-      <p className="mt-2 text-slate-600">Integrantes: Miguel Cardenas</p>
     </section>
   );
 }
