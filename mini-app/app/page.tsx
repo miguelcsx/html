@@ -6,11 +6,7 @@ export default function Home() {
       <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Proyecto</p>
       <h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">Directorio</h1>
       <p className="mt-4 max-w-md text-slate-600">
-        Consulta los usuarios de una organizacion y el detalle de contacto de cada uno.
-      </p>
-      <p className="mt-3 max-w-md text-slate-600">
-        Centraliza datos de contacto que normalmente estan dispersos entre varias fuentes,
-        con busqueda por nombre.
+        Lista de usuarios con su informacion de contacto, con busqueda por nombre.
       </p>
       <p className="mt-4 text-sm text-slate-400">Hecho por Miguel Cardenas.</p>
       <Link
