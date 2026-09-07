@@ -30,7 +30,8 @@ export default function Usuarios() {
 
   return (
     <section>
-      <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-5">Usuarios</h1>
+      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Directorio</p>
+      <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 mb-5">Usuarios</h1>
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}

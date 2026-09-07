@@ -5,7 +5,7 @@ export default function Header() {
     <header className="border-b border-slate-100 bg-white">
       <div className="max-w-3xl mx-auto px-4 py-5 flex gap-6">
         <Link href="/" className="font-semibold tracking-tight text-slate-900">
-          Mini App
+          Directorio
         </Link>
         <Link
           href="/usuarios"
